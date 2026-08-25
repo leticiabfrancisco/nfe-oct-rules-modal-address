@@ -7,11 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 <body>
   <div class="backdrop">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal__close" id="closeBtn" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M14.574793,37.5920372 L23.9995727,28.165463 L33.425207,37.5911827 C33.9703822,38.1362724 34.8549674,38.1362724 35.400997,37.5911827 L37.5911827,35.400997 C38.1362724,34.8558219 38.1362724,33.9712367 37.5911827,33.425207 L28.1646085,24.0004273 L37.5903282,14.574793 C38.1354179,14.0296178 38.1354179,13.1450326 37.5903282,12.599003 L35.4001425,10.4088173 C34.8549674,9.86372757 33.9703822,9.86372757 33.4243525,10.4088173 L23.9995727,19.8353915 L14.5739385,10.4096718 C14.0287633,9.86458208 13.1441781,9.86458208 12.5981485,10.4096718 L10.4088173,12.599003 C9.86372757,13.1440927 9.86372757,14.0287633 10.4088173,14.574793 L19.834537,24.0004273 L10.4088173,33.4260615 C9.86372757,33.9712367 9.86372757,34.8558219 10.4088173,35.4018515 L12.599003,37.5920372 C13.1441781,38.1371269 14.0287633,38.1371269 14.574793,37.5920372 Z" fill="#414141"/>
+        </svg>
+      </button>
       <h1 class="modal__title" id="modalTitle">Add extra details to continue</h1>
       <div class="modal__divider"></div>
 
@@ -20,7 +25,6 @@
         <div class="field">
           <label class="field__label" for="docType">Travel document type <span class="req">*</span></label>
           <div class="select" id="docType" tabindex="0" role="button" aria-haspopup="listbox">
-            <img class="select__icon" src="flag-icon.svg" alt="" aria-hidden="true" />
             <span class="select__placeholder">Select from list</span>
             <span class="select__chevron" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
@@ -54,7 +58,7 @@
         <div class="field" id="addressField">
           <label class="field__label" for="addressLine1">Address line 1 <span class="req">*</span></label>
           <div class="input-wrap">
-            <input class="input input--with-icon" type="text" id="addressLine1" placeholder="Start typing to see address results" />
+            <input class="input input--with-icon" type="text" id="addressLine1" placeholder="Start typing an address to see results" />
             <span class="input__icon" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
@@ -97,15 +101,15 @@
           </div>
 
           <div class="field">
-            <label class="field__label" for="county">County, district or region</label>
+            <label class="field__label" for="county">District or county</label>
             <input class="input" type="text" id="county" maxlength="16" />
             <span class="char-counter" id="countyCounter">0/16</span>
           </div>
+        </div>
 
-          <div class="actions">
-            <button type="button" class="btn btn--outline" id="cancelBtn">Cancel</button>
-            <button type="submit" class="btn btn--primary">Save</button>
-          </div>
+        <div class="actions">
+          <button type="button" class="btn btn--outline" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn btn--primary">Save</button>
         </div>
       </form>
     </div>

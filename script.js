@@ -11,6 +11,7 @@
   var county = document.getElementById("county");
   var countyCounter = document.getElementById("countyCounter");
   var cancelBtn = document.getElementById("cancelBtn");
+  var closeBtn = document.getElementById("closeBtn");
   var form = document.getElementById("detailsForm");
 
   // Mock address suggestions keyed by the postcode/city they resolve to.
@@ -91,6 +92,10 @@
     line2Field.hidden = true;
     addLine2Btn.hidden = false;
     updateCounter();
+  });
+
+  closeBtn.addEventListener("click", function () {
+    document.querySelector(".backdrop").style.display = "none";
   });
 
   form.addEventListener("submit", function (e) {
