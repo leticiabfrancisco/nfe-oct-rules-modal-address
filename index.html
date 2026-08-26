@@ -7,10 +7,151 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
-  <div class="backdrop">
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar__left">
+        <span class="topbar__logo">planet</span>
+        <span class="topbar__sep"></span>
+        <nav class="topbar__nav">
+          <a class="topbar__link">Planet Web
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="topbar__link">Forms</a>
+          <a class="topbar__link topbar__link--active">Issue Tax-Free form</a>
+        </nav>
+      </div>
+      <div class="topbar__right">
+        <a class="topbar__link">Help
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <span class="topbar__lang">
+          <span>🌐 EN</span>
+          <span>🇫🇷 FRA</span>
+        </span>
+        <span class="topbar__user">👤</span>
+      </div>
+    </header>
+
+    <main class="page__content">
+      <div class="page__header">
+        <h1 class="page__title">Issue Tax Free form</h1>
+        <button type="button" class="reset-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4v6h6M20 20v-6h-6M20 8a8 8 0 0 0-14.9-2M4 16a8 8 0 0 0 14.9 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Reset form
+        </button>
+      </div>
+
+      <div class="stepper">
+        <div class="step step--done">
+          <span class="step__circle">1</span>
+          <span class="step__label">Purchase details</span>
+        </div>
+        <span class="step__line step__line--done"></span>
+        <div class="step step--done">
+          <span class="step__circle">2</span>
+          <span class="step__label">Customer details</span>
+        </div>
+        <span class="step__line step__line--done"></span>
+        <div class="step step--active">
+          <span class="step__circle">3</span>
+          <span class="step__label">Refund details</span>
+        </div>
+        <span class="step__line"></span>
+        <div class="step">
+          <span class="step__circle">4</span>
+          <span class="step__label">Confirm</span>
+        </div>
+        <span class="step__line"></span>
+        <div class="step">
+          <span class="step__circle">5</span>
+          <span class="step__label">Done!</span>
+        </div>
+      </div>
+
+      <div class="layout">
+        <section class="card refund-card">
+          <h2 class="card__title">Refund method</h2>
+          <div class="card__divider"></div>
+
+          <div class="field">
+            <label class="field__label">Refund method</label>
+            <div class="select select--filled" tabindex="0" role="button">
+              <span class="select__value">Credit Card</span>
+              <span class="select__chevron" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="cc-details">
+            <div class="cc-details__head">
+              <h3 class="cc-details__title">Credit card details</h3>
+              <div class="cc-brands">
+                <span class="cc-brand cc-brand--visa">VISA</span>
+                <span class="cc-brand cc-brand--mc"><i></i><i></i></span>
+                <span class="cc-brand cc-brand--amex">AMEX</span>
+                <span class="cc-brand cc-brand--tax">TAX<br>FREE</span>
+              </div>
+            </div>
+
+            <div class="credit-card">
+              <div class="credit-card__top">
+                <span class="credit-card__brand">VISA</span>
+                <button type="button" class="credit-card__delete" aria-label="Delete card">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="credit-card__number">4242 42xx xxxx 42424</div>
+              <div class="credit-card__exp">05/32</div>
+            </div>
+
+            <p class="cc-details__note">Visa requires extra details for this card</p>
+            <label class="checkbox">
+              <input type="checkbox" id="useShopperDetails" />
+              <span class="checkbox__box"></span>
+              <span class="checkbox__label">Use the shopper details already provided</span>
+            </label>
+          </div>
+        </section>
+
+        <aside class="card summary-card">
+          <h2 class="card__title">Summary</h2>
+          <div class="card__divider"></div>
+          <div class="summary-row">
+            <span class="summary-row__label">Total sales</span>
+            <span class="summary-row__value">100.00 EUR</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-row__label">Nr. of receipts</span>
+            <span class="summary-row__value">1</span>
+          </div>
+          <div class="summary-total">
+            <svg class="summary-total__icon" width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.6"/></svg>
+            <div>
+              <div class="summary-total__label">Total refund</div>
+              <div class="summary-total__value">12.00 EUR</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footbar">
+      <button type="button" class="btn btn--outline btn--nav">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
+      <button type="button" class="btn btn--primary btn--nav" id="nextBtn">
+        Next
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </footer>
+  </div>
+
+  <div class="backdrop" id="modalBackdrop" hidden>
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button type="button" class="modal__close" id="closeBtn" aria-label="Close">
         <svg width="16" height="16" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -25,7 +166,7 @@
         <div class="field">
           <label class="field__label" for="docType">Travel document type <span class="req">*</span></label>
           <div class="select" id="docType" tabindex="0" role="button" aria-haspopup="listbox">
-            <span class="select__placeholder">Select from list</span>
+            <span class="select__placeholder" id="docTypeValue">Select from list</span>
             <span class="select__chevron" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -44,8 +185,8 @@
         <div class="field">
           <label class="field__label" for="docCountry">Document country <span class="req">*</span></label>
           <div class="select" id="docCountry" tabindex="0" role="button" aria-haspopup="listbox">
-            <img class="select__icon" src="flag-icon.svg" alt="" aria-hidden="true" />
-            <span class="select__placeholder">Select from list</span>
+            <img class="select__icon" id="docCountryFlag" src="flag-icon.svg" alt="" aria-hidden="true" />
+            <span class="select__placeholder" id="docCountryValue">Select from list</span>
             <span class="select__chevron" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

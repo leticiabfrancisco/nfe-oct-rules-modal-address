@@ -12,7 +12,39 @@
   var countyCounter = document.getElementById("countyCounter");
   var cancelBtn = document.getElementById("cancelBtn");
   var closeBtn = document.getElementById("closeBtn");
+  var nextBtn = document.getElementById("nextBtn");
+  var modalBackdrop = document.getElementById("modalBackdrop");
   var form = document.getElementById("detailsForm");
+  var useShopperDetails = document.getElementById("useShopperDetails");
+  var docTypeValue = document.getElementById("docTypeValue");
+  var docNumber = document.getElementById("docNumber");
+  var docCountryValue = document.getElementById("docCountryValue");
+  var docCountryFlag = document.getElementById("docCountryFlag");
+
+  function applyShopperDetails() {
+    if (useShopperDetails.checked) {
+      docTypeValue.textContent = "Passport";
+      docNumber.value = "37112312441";
+      docCountryValue.textContent = "United Kingdom";
+      docCountryFlag.src = "uk-flag.svg";
+    } else {
+      docTypeValue.textContent = "Select from list";
+      docNumber.value = "";
+      docCountryValue.textContent = "Select from list";
+      docCountryFlag.src = "flag-icon.svg";
+    }
+  }
+
+  function openModal() {
+    applyShopperDetails();
+    modalBackdrop.hidden = false;
+    document.documentElement.classList.add("modal-open");
+  }
+
+  function closeModal() {
+    modalBackdrop.hidden = true;
+    document.documentElement.classList.remove("modal-open");
+  }
 
   // Mock address suggestions keyed by the postcode/city they resolve to.
   var SUGGESTIONS = [
@@ -63,7 +95,24 @@
     countyCounter.textContent = county.value.length + "/16";
   }
 
+  function collapseAddress() {
+    expanded.hidden = true;
+    postcode.value = "";
+    city.value = "";
+    county.value = "";
+    line2Field.hidden = true;
+    addLine2Btn.hidden = false;
+    var line2 = document.getElementById("addressLine2");
+    if (line2) {
+      line2.value = "";
+    }
+    updateCounter();
+  }
+
   addressInput.addEventListener("input", function () {
+    if (addressInput.value.trim() === "") {
+      collapseAddress();
+    }
     renderSuggestions(addressInput.value);
   });
 
@@ -86,20 +135,23 @@
 
   county.addEventListener("input", updateCounter);
 
+  useShopperDetails.addEventListener("change", applyShopperDetails);
+
   cancelBtn.addEventListener("click", function () {
     form.reset();
     expanded.hidden = true;
     line2Field.hidden = true;
     addLine2Btn.hidden = false;
     updateCounter();
+    closeModal();
   });
 
-  closeBtn.addEventListener("click", function () {
-    document.querySelector(".backdrop").style.display = "none";
-  });
+  closeBtn.addEventListener("click", closeModal);
+
+  nextBtn.addEventListener("click", openModal);
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    alert("Details saved.");
+    closeModal();
   });
 })();
