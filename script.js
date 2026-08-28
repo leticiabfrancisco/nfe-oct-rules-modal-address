@@ -20,6 +20,7 @@
   var docNumber = document.getElementById("docNumber");
   var docCountryValue = document.getElementById("docCountryValue");
   var docCountryFlag = document.getElementById("docCountryFlag");
+  var manualEntry = false;
 
   function applyShopperDetails() {
     if (useShopperDetails.checked) {
@@ -64,10 +65,6 @@
     var matches = SUGGESTIONS.filter(function (s) {
       return s.label.toLowerCase().indexOf(q) !== -1;
     });
-    if (!matches.length) {
-      autocomplete.hidden = true;
-      return;
-    }
     matches.forEach(function (match) {
       var li = document.createElement("li");
       li.textContent = match.label;
@@ -78,7 +75,21 @@
       });
       autocomplete.appendChild(li);
     });
+    appendManualFooter();
     autocomplete.hidden = false;
+  }
+
+  // Persistent footer link to fall back to manual entry.
+  function appendManualFooter() {
+    var li = document.createElement("li");
+    li.className = "autocomplete__footer";
+    li.setAttribute("role", "option");
+    li.textContent = "Can't find the address? Enter it manually";
+    li.addEventListener("mousedown", function (e) {
+      e.preventDefault();
+      startManualEntry();
+    });
+    autocomplete.appendChild(li);
   }
 
   function selectAddress(match) {
@@ -88,7 +99,20 @@
     county.value = match.county;
     updateCounter();
     autocomplete.hidden = true;
+    manualEntry = false;
     expanded.hidden = false;
+  }
+
+  // Reveal the structured form with empty, editable fields.
+  function startManualEntry() {
+    autocomplete.hidden = true;
+    postcode.value = "";
+    city.value = "";
+    county.value = "";
+    updateCounter();
+    manualEntry = true;
+    expanded.hidden = false;
+    addressInput.focus();
   }
 
   function updateCounter() {
@@ -97,6 +121,7 @@
 
   function collapseAddress() {
     expanded.hidden = true;
+    manualEntry = false;
     postcode.value = "";
     city.value = "";
     county.value = "";
@@ -112,6 +137,11 @@
   addressInput.addEventListener("input", function () {
     if (addressInput.value.trim() === "") {
       collapseAddress();
+    }
+    // While manual entry is active, keep the form open instead of showing results.
+    if (manualEntry) {
+      autocomplete.hidden = true;
+      return;
     }
     renderSuggestions(addressInput.value);
   });
@@ -140,6 +170,7 @@
   cancelBtn.addEventListener("click", function () {
     form.reset();
     expanded.hidden = true;
+    manualEntry = false;
     line2Field.hidden = true;
     addLine2Btn.hidden = false;
     updateCounter();
